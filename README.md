@@ -14,3 +14,6 @@
     pcn = pd.read_csv('olist/product_category_name_translation.csv')
     j1 = pd.merge(oor, oit, on='order_id', how='left')
     j2 = pd.merge(j1, ocu, on='customer_id', how='left')
+    vgl = ogl.groupby(['geolocation_zip_code_prefix', 'geolocation_city', 'geolocation_state']).mean()
+    j3 = pd.merge(j2, vgl, how='left', left_on=['customer_zip_code_prefix', 'customer_city', 'customer_state'], right_index=True)
+    vpg = opa.groupby('order_id').sum()
