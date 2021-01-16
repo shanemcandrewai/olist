@@ -17,3 +17,4 @@
     vgl = ogl.groupby(['geolocation_zip_code_prefix', 'geolocation_city', 'geolocation_state']).mean()
     j3 = pd.merge(j2, vgl, how='left', left_on=['customer_zip_code_prefix', 'customer_city', 'customer_state'], right_index=True)
     vpg = opa.groupby('order_id').sum()
+    vgl = ogl.drop_duplicates().to_numpy()
